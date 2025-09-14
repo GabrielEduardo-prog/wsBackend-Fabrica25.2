@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>📖 Livros</h2>
-<a href="{% url 'biblioteca:livro_create' %}"><button>+ Novo Livro</button></a>
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'biblioteca:livro_create' %}"><button>+ Novo Livro</button></a>
+    <a href="{% url 'biblioteca:buscar_livros_api' %}"><button style="background: linear-gradient(45deg, #28a745, #20c997); margin-left: 10px;">🔍 Buscar na API</button></a>
+</div>
 
 {% for livro in object_list %}
 <div class="item">

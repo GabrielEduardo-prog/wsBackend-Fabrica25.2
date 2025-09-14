@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Escritor, Livro
 
-# Configuração do Admin para Escritor
+
 @admin.register(Escritor)
 class EscritorAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email')
@@ -9,7 +9,6 @@ class EscritorAdmin(admin.ModelAdmin):
     list_filter = ('nome',)
     ordering = ('nome',)
 
-# Configuração do Admin para Livro
 @admin.register(Livro)
 class LivroAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'escritor', 'data_publicacao', 'isbn')
@@ -18,8 +17,8 @@ class LivroAdmin(admin.ModelAdmin):
     date_hierarchy = 'data_publicacao'
     ordering = ('-data_publicacao',)
     
-    # Campos no formulário de edição
+   
     fields = ('titulo', 'escritor', 'data_publicacao', 'isbn')
     
-    # Para facilitar a seleção do escritor
+    
     autocomplete_fields = ['escritor']
