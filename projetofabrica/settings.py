@@ -66,6 +66,14 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [BASE_DIR / 'biblioteca' / 'jinja2'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'biblioteca.jinja2_env.environment',
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'projetofabrica.wsgi.application'

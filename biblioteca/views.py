@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+from django.template import loader
+from datetime import datetime
 import json
 
 # Create your views here.
@@ -121,3 +123,35 @@ def importar_livro_api(request):
         messages.error(request, f'Erro ao importar livro: {str(e)}')
     
     return redirect('biblioteca:buscar_livros_api')
+
+
+def relatorio_biblioteca(request):
+    """
+    View que gera relatório da biblioteca usando Jinja2
+    """
+    from django.http import HttpResponse
+    
+    # Coletar dados para o relatório
+    livros = Livro.objects.select_related('escritor').all()
+    autores = Escritor.objects.prefetch_related('livro_set').all()
+    
+    # Calcular estatísticas
+    total_livros = livros.count()
+    total_autores = autores.count()
+    livros_com_isbn = livros.exclude(isbn='').exclude(isbn__isnull=True).count()
+    
+    # Contexto para o template Jinja2
+    context = {
+        'livros': livros,
+        'autores': autores,
+        'total_livros': total_livros,
+        'total_autores': total_autores,
+        'livros_com_isbn': livros_com_isbn,
+        'data_geracao': datetime.now(),
+    }
+    
+    # Carregar template Jinja2 e renderizar
+    template = loader.get_template('relatorio_biblioteca.html')
+    html_content = template.render(context, request)
+    
+    return HttpResponse(html_content)

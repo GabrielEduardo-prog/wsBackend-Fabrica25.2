@@ -16,7 +16,10 @@ urlpatterns = [
     path('escritor/<int:pk>/edit/', views.EscritorUpdate.as_view(), name='escritor_edit'),
     path('escritor/<int:pk>/delete/', views.EscritorDelete.as_view(), name='escritor_delete'),
     
-    
+    # URLs para API Externa
     path('buscar-api/', views.buscar_livros_api, name='buscar_livros_api'),
     path('importar-livro/', views.importar_livro_api, name='importar_livro_api'),
+    
+    # URL para Relatório com Jinja2
+    path('relatorio/', views.relatorio_biblioteca, name='relatorio_biblioteca'),
 ]
