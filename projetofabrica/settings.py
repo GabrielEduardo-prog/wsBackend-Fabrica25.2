@@ -82,19 +82,19 @@ WSGI_APPLICATION = 'projetofabrica.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Configuração PostgreSQL (para produção)
+# Configuração PostgreSQL para caso queira usar PostgreSQL 
 DATABASES_POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'biblioteca_db',
         'USER': 'postgres',
-        'PASSWORD': '123456',  # Altere para sua senha
+        'PASSWORD': '123456',  
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 
-# Configuração SQLite (ATIVA - mais simples)
+# Configuração SQLite essa ta sendo a usada, pois nao vi a necessidade de usar PostgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -102,13 +102,13 @@ DATABASES = {
     }
 }
 
-# Configuração PostgreSQL (para quando instalar PostgreSQL)
+# Configuração PostgreSQL 
 DATABASES_POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'biblioteca_db',
         'USER': 'postgres',
-        'PASSWORD': '123456',  # Altere para sua senha do PostgreSQL
+        'PASSWORD': '123456',  
         'HOST': 'localhost',
         'PORT': '5432',
     }
