@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📖 Livros</h2>
+<a href="{% url 'biblioteca:livro_create' %}"><button>+ Novo Livro</button></a>
+
+{% for livro in object_list %}
+<div class="item">
+    <h3>{{ livro.titulo }}</h3>
+    <p><strong>Autor:</strong> {{ livro.escritor.nome }}</p>
+    <p><strong>Ano:</strong> {{ livro.data_publicacao.year }}</p>
+    <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+    <div style="margin-top: 10px;">
+        <a href="{% url 'biblioteca:livro_edit' livro.pk %}">✏️ Editar</a>
+        <a href="{% url 'biblioteca:livro_delete' livro.pk %}">🗑️ Excluir</a>
+    </div>
+</div>
+{% empty %}
+<div class="empty-message">
+    <h3>📚 Nenhum livro cadastrado</h3>
+    <p>Comece adicionando seu primeiro livro!</p>
+    <a href="{% url 'biblioteca:livro_create' %}"><button>+ Cadastrar Primeiro Livro</button></a>
+</div>
+{% endfor %}
+{% endblock %}

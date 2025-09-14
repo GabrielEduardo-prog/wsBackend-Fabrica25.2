@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>✍️ Escritores</h2>
+<a href="{% url 'biblioteca:escritor_create' %}"><button>+ Novo Escritor</button></a>
+
+{% for escritor in object_list %}
+<div class="item">
+    <h3>{{ escritor.nome }}</h3>
+    <p><strong>Email:</strong> {{ escritor.email }}</p>
+    <p><strong>Livros:</strong> {{ escritor.livro_set.count }} livro{{ escritor.livro_set.count|pluralize }}</p>
+    <div style="margin-top: 10px;">
+        <a href="{% url 'biblioteca:escritor_edit' escritor.pk %}">✏️ Editar</a>
+        <a href="{% url 'biblioteca:escritor_delete' escritor.pk %}">🗑️ Excluir</a>
+    </div>
+</div>
+{% empty %}
+<div class="empty-message">
+    <h3>✍️ Nenhum escritor cadastrado</h3>
+    <p>Comece adicionando seu primeiro escritor!</p>
+    <a href="{% url 'biblioteca:escritor_create' %}"><button>+ Cadastrar Primeiro Escritor</button></a>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>✍️ Cadastrar Escritor</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>👤 Nome:</label>
+    {{ form.nome }}
+    
+    <label>📧 Email:</label>
+    {{ form.email }}
+    
+    <div style="margin-top: 20px;">
+        <button type="submit">💾 Salvar Escritor</button>
+        <a href="{% url 'biblioteca:escritor_list' %}"><button type="button">↩️ Voltar</button></a>
+    </div>
+</form>
+
+{% if form.errors %}
+<div style="background: #ffebee; border: 1px solid #e57373; border-radius: 8px; padding: 15px; margin-top: 20px; color: #c62828;">
+    <h4>⚠️ Erros encontrados:</h4>
+    {{ form.errors }}
+</div>
+{% endif %}
+{% endblock %}

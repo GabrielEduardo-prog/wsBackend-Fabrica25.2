@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            margin: 0 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        input, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border: 2px solid #e1e5fe;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white !important;
+            color: black !important;
+            pointer-events: auto !important;
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            cursor: text !important;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: scale(1.02);
+            background: white !important;
+            color: black !important;
+        }
+        
+        /* Garantir que todos os tipos de input funcionem */
+        input[type="text"], 
+        input[type="email"], 
+        input[type="date"] {
+            background: white !important;
+            color: black !important;
+            border: 2px solid #e1e5fe !important;
+            cursor: text !important;
+            pointer-events: auto !important;
+            user-select: text !important;
+        }
+        
+        .item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .item a {
+            color: #764ba2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        .item a:hover {
+            background: rgba(118, 75, 162, 0.1);
+            color: #5a3d7a;
+        }
+        
+        form {
+            max-width: 500px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+        }
+        
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Sistema de Biblioteca</h1>
+        <nav>
+            <a href="{% url 'biblioteca:livro_list' %}">📖 Livros</a>
+            <a href="{% url 'biblioteca:escritor_list' %}">✍️ Escritores</a>
+        </nav>
+        
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
